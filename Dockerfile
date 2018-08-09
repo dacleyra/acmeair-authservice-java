@@ -13,5 +13,5 @@ RUN installUtility install --acceptLicense defaultServer || if [ $? -ne 22 ]; th
 
 COPY jvm.options /config/jvm.options
 
-COPY target/acmeair-bookingservice-java-2.0.0-SNAPSHOT.war /config/apps/
+COPY target/authservice-java-2.0.0-SNAPSHOT.war /config/apps/
 
