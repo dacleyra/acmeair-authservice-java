@@ -1,6 +1,10 @@
 FROM websphere-liberty:microProfile
+
 # Install opentracing usr feature
-RUN wget -t 10 -x -nd -P /opt/ibm/wlp/usr https://repo1.maven.org/maven2/net/wasdev/wlp/tracer/liberty-opentracing-zipkintracer/1.0/liberty-opentracing-zipkintracer-1.0-sample.zip && cd /opt/ibm/wlp/usr && unzip liberty-opentracing-zipkintracer-1.0-sample.zip && rm liberty-opentracing-zipkintracer-1.0-sample.zip
+
+COPY liberty-opentracing-zipkintracer-1.1-sample.zip /opt/ibm/wlp/usr/liberty-opentracing-zipkintracer-1.1-sample.zip
+
+RUN cd /opt/ibm/wlp/usr && unzip liberty-opentracing-zipkintracer-1.1-sample.zip && rm liberty-opentracing-zipkintracer-1.1-sample.zip
 
 COPY server.xml /config/server.xml
 
@@ -9,5 +13,5 @@ RUN installUtility install --acceptLicense defaultServer || if [ $? -ne 22 ]; th
 
 COPY jvm.options /config/jvm.options
 
-COPY target/acmeair-authservice-java-2.0.0-SNAPSHOT.war /config/apps/
+COPY target/acmeair-bookingservice-java-2.0.0-SNAPSHOT.war /config/apps/
 
